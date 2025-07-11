@@ -1,35 +1,33 @@
-CC			=	cc -Wall -Wextra -Werror #-g3 -fsanitize=address
+NAME	=	philo
+CC		=	cc
+CFLAGS	=	-Wall -Wextra -Werror #-g -fsanitize=address
 
-NAME		=	philo
-OBJDIR		=	objs/
-SRCS		=	a.c
-OBJS		=	$(SRCS:%.c=$(OBJDIR)%.o)
+SRCDIR	=	.
+OBJDIR	=	objs
 
-AR			=	ar rcs
-RM			=	rm -f
+SRCS	=	$(shell find $(SRCDIR) -name '*.c')
+OBJS	=	$(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
 
-all:		$(NAME)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME):    $(OBJS)
-				@echo "Inviting philosophers over 🤔🧠💭"
-				@$(CC) $(OBJS) -o $(NAME)
-				@echo "Cooking up the dinner 🍲🍳🍖"
-				@echo "✅ Ready to eat ✅"
-				@$(RM) 
-
-$(OBJDIR)%.o: $(SRCDIR)%.c
-				@mkdir -p $(OBJDIR)
-				@$(CC) -c $< -o $@
+$(NAME): $(OBJS)
+	@echo "Inviting philosophers over 🤔🧠💭"
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -lpthread
+	@echo "Cooking up the dinner 🍲🍳🍖"
+	@echo "Setting the table 🍽️ 🍴"
+	@echo "✅ Ready to eat ✅"
 
 clean:
-				@$(RM) $(OBJS)
-				@rm -rf $(OBJDIR)
-				@echo "Washing the dishes... 🧽🧼🍽✨"
+	@echo "Washing the dishes... 💦🧼🫧"
+	@if [ -n "$(OBJDIR)" ] && [ "$(OBJDIR)" != "/" ]; then rm -rf $(OBJDIR); fi
 
-fclean:			clean
-				@$(RM) $(NAME)
-				@$(RM) $(EXEC)
+fclean: clean
+	@rm -f $(NAME)
 
-re:				fclean all
+re: fclean all
+all: $(NAME)
 
-.PHONY:       	all clean fclean re
+.PHONY: all clean fclean re
+
