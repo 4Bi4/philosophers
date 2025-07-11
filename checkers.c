@@ -6,7 +6,7 @@
 /*   By: labia-fe <labia-fe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 12:05:55 by labia-fe          #+#    #+#             */
-/*   Updated: 2025/07/11 21:01:46 by labia-fe         ###   ########.fr       */
+/*   Updated: 2025/07/11 21:55:15 by labia-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	check_on_philos(t_data *data)
 			break ;
 		if (check_meals_done(data))
 		{
-			printf(B_GREEN "[SIMULATION COMPLETED]\n" RESET);	
+			printf(B_GREEN "[SIMULATION COMPLETE]\n" RESET);	
 			break ;
 		}
 		usleep(500);

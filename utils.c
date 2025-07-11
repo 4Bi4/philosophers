@@ -6,7 +6,7 @@
 /*   By: labia-fe <labia-fe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 11:16:43 by labia-fe          #+#    #+#             */
-/*   Updated: 2025/07/11 20:46:30 by labia-fe         ###   ########.fr       */
+/*   Updated: 2025/07/11 21:35:25 by labia-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	print_action(t_philo *philo, t_action action)
 	if (time < 0)
 		return;
 	pthread_mutex_lock(&philo->data->print);
-	if (!philo->data->sim_end)
+	if (!philo->data->sim_end || action == DIE)
 	{
 		if (action == TAKE_FORK)
 			printf(CYAN "%ld %d has taken a fork\n" RESET, time, philo->id);
