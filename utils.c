@@ -6,7 +6,7 @@
 /*   By: labia-fe <labia-fe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 11:16:43 by labia-fe          #+#    #+#             */
-/*   Updated: 2025/07/11 21:35:25 by labia-fe         ###   ########.fr       */
+/*   Updated: 2025/07/11 22:08:49 by labia-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	print_action(t_philo *philo, t_action action)
 
 	time = get_time(philo->data->start_time);
 	if (time < 0)
-		return;
+		return ;
 	pthread_mutex_lock(&philo->data->print);
 	if (!philo->data->sim_end || action == DIE)
 	{

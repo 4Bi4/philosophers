@@ -6,7 +6,7 @@
 /*   By: labia-fe <labia-fe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 12:05:55 by labia-fe          #+#    #+#             */
-/*   Updated: 2025/07/11 21:55:15 by labia-fe         ###   ########.fr       */
+/*   Updated: 2025/07/11 22:06:32 by labia-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,14 @@ int	check_args(char **argv)
 
 bool	check_deaths(t_data *data)
 {
-	int i;
+	int		i;
+	long	last_meal;
 
 	i = 0;
 	while (i < data->philo_n)
 	{
-		long time_since_last_meal = get_time(data->start_time) - data->philo_list[i]->last_meal;
-		if (time_since_last_meal > data->death_t)
+		last_meal = get_time(data->start_time) - data->philo_list[i]->last_meal;
+		if (last_meal > data->death_t)
 		{
 			print_action(data->philo_list[i], DIE);
 			pthread_mutex_lock(&data->print);
@@ -71,8 +72,8 @@ bool	check_deaths(t_data *data)
 
 bool	check_meals_done(t_data *data)
 {
-	int i;
-	bool all_satisfied;
+	int		i;
+	bool	all_satisfied;
 
 	if (data->meals_n <= 0)
 		return (false);
@@ -83,7 +84,7 @@ bool	check_meals_done(t_data *data)
 		if (data->philo_list[i]->times_eaten < data->meals_n)
 		{
 			all_satisfied = false;
-			break;
+			break ;
 		}
 		i++;
 	}
@@ -100,7 +101,7 @@ void	check_on_philos(t_data *data)
 			break ;
 		if (check_meals_done(data))
 		{
-			printf(B_GREEN "[SIMULATION COMPLETE]\n" RESET);	
+			printf(B_GREEN "[SIMULATION COMPLETE]\n" RESET);
 			break ;
 		}
 		usleep(500);

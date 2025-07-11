@@ -6,7 +6,7 @@
 /*   By: labia-fe <labia-fe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 20:46:41 by labia-fe          #+#    #+#             */
-/*   Updated: 2025/07/11 21:07:11 by labia-fe         ###   ########.fr       */
+/*   Updated: 2025/07/11 22:11:47 by labia-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	init_philo_data(t_data *data)
 	while (i < data->philo_n)
 	{
 		data->philo_list[i]->id = i + 1;
-		data->philo_list[i]->fork_L = &data->forks[i];
-		data->philo_list[i]->fork_R = &data->forks[(i + 1) % data->philo_n];
+		data->philo_list[i]->fork_l = &data->forks[i];
+		data->philo_list[i]->fork_r = &data->forks[(i + 1) % data->philo_n];
 		data->philo_list[i]->last_meal = 0;
 		data->philo_list[i]->times_eaten = 0;
 		data->philo_list[i]->thread = 0;
@@ -80,15 +80,17 @@ int	init_data(char **argv, t_data *data)
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	
+
 	if (argc != 5 && argc != 6)
-		return (printf("USAGE:\n(number of philosophers)\n(time to die)\n(time to eat)\n(time to sleep)\n(number of meals) OPTIONAL\n"), 2);
+		return (printf("%s%s%s", ERROR_1, ERROR_2, ERROR_3), 2);
 	if (check_args(argv) != 0)
 		return (printf(B_RED "[ERROR] bad input (invalid values)\n" RESET), 2);
-	if (init_data(argv, &data)!= 0)
-		return (printf(B_RED "[ERROR] internal error\n" RESET), free_data(&data), 1);
+	if (init_data(argv, &data) != 0)
+		return (printf(B_RED "[ERROR] internal error\n" RESET),
+			free_data(&data), 1);
 	if (start_simulation(&data) != 0)
-		return (printf(B_RED "[ERROR] failed to start simulation :(\n" RESET), free_data(&data), 1);
+		return (printf(B_RED "[ERROR] failed to start simulation :(\n" RESET),
+			free_data(&data), 1);
 	check_on_philos(&data);
 	wait_sim_end(&data);
 	return (free_data(&data), 0);
