@@ -6,7 +6,7 @@
 /*   By: labia-fe <labia-fe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 20:05:05 by labia-fe          #+#    #+#             */
-/*   Updated: 2025/07/11 22:11:47 by labia-fe         ###   ########.fr       */
+/*   Updated: 2025/07/18 16:39:00 by labia-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,34 +43,34 @@
 # define ERROR_2 "(time to die)\n(time to eat)\n"
 # define ERROR_3 "(time to sleep)\n(number of meals) OPTIONAL\n"
 
-typedef struct s_data	t_data;
+typedef struct s_data		t_data;
 
 typedef struct s_philo
 {
-	short				id;
-	pthread_t			thread;
-	pthread_mutex_t		*fork_l;
-	pthread_mutex_t		*fork_r;
-	long				last_meal;
-	short				times_eaten;
-	t_data				*data;
-}						t_philo;
+	short					id;
+	pthread_t				thread;
+	pthread_mutex_t			*fork_l;
+	pthread_mutex_t			*fork_r;
+	long					last_meal;
+	short					times_eaten;
+	t_data					*data;
+}							t_philo;
 
 typedef struct s_data
 {
-	int					philo_n;
-	long				death_t;
-	long				eat_t;
-	long				sleep_t;
-	int					meals_n;
+	int						philo_n;
+	long					death_t;
+	long					eat_t;
+	long					sleep_t;
+	int						meals_n;
 
-	t_philo				**philo_list;
-	pthread_mutex_t		*forks;
-	pthread_mutex_t		print;
+	t_philo					**philo_list;
+	pthread_mutex_t			*forks;
+	pthread_mutex_t			print;
 
-	long				start_time;
-	bool				sim_end;
-}						t_data;
+	long					start_time;
+	bool					sim_end;
+}							t_data;
 
 typedef enum e_action
 {
@@ -79,22 +79,22 @@ typedef enum e_action
 	EAT,
 	SLEEP,
 	DIE
-}						t_action;
+}							t_action;
 
-void					*philo_loop(void *arg);
-void					wait_sim_end(t_data *data);
-int						start_simulation(t_data *data);
-void					join_philosophers(t_data *data);
+void						*philo_loop(void *arg);
+void						wait_sim_end(t_data *data);
+int							start_simulation(t_data *data);
+void						join_philosophers(t_data *data);
 
-long					get_time(long start);
-void					print_action(t_philo *philo, t_action action);
+long						get_time(long start);
+void						print_action(t_philo *philo, t_action action);
 
-int						check_args(char **argv);
-void					check_on_philos(t_data *data);
+int							check_args(char **argv);
+void						check_on_philos(t_data *data);
 
-int						ft_isdigit(char c);
-int						ft_atoi(const char *c);
+int							ft_isdigit(char c);
+int							ft_atoi(const char *c);
 
-void					free_data(t_data *data);
+void						free_data(t_data *data);
 
 #endif

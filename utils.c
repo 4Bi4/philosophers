@@ -6,7 +6,7 @@
 /*   By: labia-fe <labia-fe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 11:16:43 by labia-fe          #+#    #+#             */
-/*   Updated: 2025/07/18 14:11:17 by labia-fe         ###   ########.fr       */
+/*   Updated: 2025/07/18 16:40:56 by labia-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,11 @@ void	print_action(t_philo *philo, t_action action)
 {
 	long	time;
 
+	pthread_mutex_lock(&philo->data->print);
 	time = get_time(philo->data->start_time);
 	if (time < 0)
 		return ;
-	pthread_mutex_lock(&philo->data->print);
-	if (!philo->data->sim_end || action == DIE)
+	if (!philo->data->sim_end)
 	{
 		if (action == TAKE_FORK)
 			printf(CYAN "%ld %d has taken a fork\n" RESET, time, philo->id);
@@ -109,8 +109,6 @@ void	print_action(t_philo *philo, t_action action)
 			printf(MAGENTA "%ld %d is eating\n" RESET, time, philo->id);
 		else if (action == SLEEP)
 			printf(BLUE "%ld %d is sleeping\n" RESET, time, philo->id);
-		else if (action == DIE)
-			printf(B_RED "%ld %d died\n" RESET, time, philo->id);
 	}
 	pthread_mutex_unlock(&philo->data->print);
 }

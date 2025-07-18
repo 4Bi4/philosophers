@@ -6,7 +6,7 @@
 /*   By: labia-fe <labia-fe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 12:05:55 by labia-fe          #+#    #+#             */
-/*   Updated: 2025/07/11 22:06:32 by labia-fe         ###   ########.fr       */
+/*   Updated: 2025/07/18 16:43:46 by labia-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,10 @@ bool	check_deaths(t_data *data)
 		last_meal = get_time(data->start_time) - data->philo_list[i]->last_meal;
 		if (last_meal > data->death_t)
 		{
-			print_action(data->philo_list[i], DIE);
 			pthread_mutex_lock(&data->print);
 			data->sim_end = true;
+			printf(B_RED "%ld %d died\n" RESET, get_time(data->start_time),
+				data->philo_list[i]->id);
 			pthread_mutex_unlock(&data->print);
 			return (true);
 		}
