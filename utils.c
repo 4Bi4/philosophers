@@ -6,7 +6,7 @@
 /*   By: labia-fe <labia-fe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 11:16:43 by labia-fe          #+#    #+#             */
-/*   Updated: 2025/07/11 22:08:49 by labia-fe         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:11:17 by labia-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	print_action(t_philo *philo, t_action action)
 		else if (action == SLEEP)
 			printf(BLUE "%ld %d is sleeping\n" RESET, time, philo->id);
 		else if (action == DIE)
-			printf(B_RED "%ld %d has died\n" RESET, time, philo->id);
+			printf(B_RED "%ld %d died\n" RESET, time, philo->id);
 	}
 	pthread_mutex_unlock(&philo->data->print);
 }
