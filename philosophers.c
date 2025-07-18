@@ -6,7 +6,7 @@
 /*   By: labia-fe <labia-fe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 20:46:41 by labia-fe          #+#    #+#             */
-/*   Updated: 2025/07/18 16:48:44 by labia-fe         ###   ########.fr       */
+/*   Updated: 2025/07/18 16:56:43 by labia-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	printf("Sorpresa! %lu\n", sizeof(short));
 	if (argc != 5 && argc != 6)
 		return (printf("%s%s%s", ERROR_1, ERROR_2, ERROR_3), 2);
 	if (check_args(argv) != 0)
