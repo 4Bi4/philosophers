@@ -6,7 +6,7 @@
 /*   By: labia-fe <labia-fe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 18:49:36 by labia-fe          #+#    #+#             */
-/*   Updated: 2025/07/30 20:17:15 by labia-fe         ###   ########.fr       */
+/*   Updated: 2025/08/04 17:32:16 by labia-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static int	eat(t_philo *philo, pthread_mutex_t *first_fork,
 		pthread_mutex_unlock(first_fork);
 		return (1);
 	}
-	pthread_mutex_unlock(&philo->meal_check);
 	philo->last_meal = get_time(philo->data->start_time);
+	pthread_mutex_unlock(&philo->meal_check);
 	print_action(philo, EAT);
 	usleep(philo->data->eat_t * 1000);
 	pthread_mutex_lock(&philo->meal_check);
