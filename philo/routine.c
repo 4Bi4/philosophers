@@ -6,7 +6,7 @@
 /*   By: labia-fe <labia-fe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 18:49:36 by labia-fe          #+#    #+#             */
-/*   Updated: 2025/08/04 17:32:16 by labia-fe         ###   ########.fr       */
+/*   Updated: 2025/08/04 20:22:56 by labia-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,8 @@ static int	take_forks_and_eat(t_philo *philo)
 	pthread_mutex_t	*first_fork;
 	pthread_mutex_t	*second_fork;
 
-	if (philo->fork_l < philo->fork_r)
-	{
-		first_fork = philo->fork_l;
-		second_fork = philo->fork_r;
-	}
-	else
-	{
-		first_fork = philo->fork_r;
-		second_fork = philo->fork_l;
-	}
+	first_fork = philo->fork_l;
+	second_fork = philo->fork_r;
 	pthread_mutex_lock(first_fork);
 	print_action(philo, TAKE_FORK);
 	pthread_mutex_lock(second_fork);
@@ -101,6 +93,8 @@ void	*philo_loop(void *arg)
 		pthread_mutex_unlock(philo->fork_l);
 		return (NULL);
 	}
+	if (philo->id % 2 == 0)
+		usleep(philo->data->eat_t / 2 * 1000);
 	while (routine(philo) == 0)
 		;
 	return (NULL);

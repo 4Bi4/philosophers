@@ -1,6 +1,6 @@
 NAME	=	philo
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror #-fsanitize=thread -g
+CFLAGS	=	-Wall -Wextra -Werror -O3 #-fsanitize=thread -g
 
 SRCDIR	=	.
 OBJDIR	=	objs
